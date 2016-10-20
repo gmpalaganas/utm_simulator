@@ -33,7 +33,7 @@ class TuringMachine{
         TuringMachine(std::string filename);
         ~TuringMachine();
 
-        std::string cur_state();
+        std::string get_cur_state();
         void set_cur_state(std::string s);
 
         std::string alphabet();

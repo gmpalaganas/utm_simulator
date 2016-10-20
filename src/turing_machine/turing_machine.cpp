@@ -54,7 +54,7 @@ TuringMachine(string filename){
 ~TuringMachine(){
 }
 
-string cur_state{ return states[cur_state]; }
+string get_cur_state(){ return states[cur_state]; }
 
 void set_cur_state(string c){
 
