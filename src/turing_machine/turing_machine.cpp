@@ -4,14 +4,14 @@ using namespace std;
 using namespace TuringMachine;
 
 TuringMachine(vector<string> states, string input_alphabet, vector<vector<int>> state_transition_matrix,
-              string start_state, vector<string> accept_states, string tape, char blank_symbol = '_'
+              string start_state, vector<string> accept_states, string tape, string blank_symbols = "_" 
               int head_pos = 0) :
     states(states),
     input_alphabet(input_alphabet),
     state_transition_matrix(state_transition_matrix),
     accept_states(accept_states),
     tape(tape),
-    blank_symbol(blank_symbol),
+    blank_symbols(blank_symbols),
     head_pos(head_pos){
 
         set_cur_state(start_state)
@@ -35,7 +35,7 @@ TuringMachine(ifstream stream){
 
     getline(stream, tape);
 
-    vector<vector<int>> transition_matrix_temp(input_alphabet.size(),
+    vector<vector<int>> transition_matrix_temp(input_alphabet.size() + blank_symbols.size(),
                                                vector<int>(states.size(), 0));
     while(getline(stream, holder)){
 

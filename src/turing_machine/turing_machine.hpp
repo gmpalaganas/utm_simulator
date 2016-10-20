@@ -13,7 +13,7 @@ class TuringMachine{
         std::string input_alphabet;
         std::string tape;
 
-        char blank_symbol;
+        stdL::string blank_symbols;
 
         std::vector<std::string> states;
         std::vector<std::string> accept_states;
@@ -26,7 +26,7 @@ class TuringMachine{
         TuringMachine(std::vector<std::string> states, std::string input_alphabet,
                       std::vector<std::vector<int>> state_transition_matrix,
                       std::string start_state, std::vector<std::string> accept_states,
-                      std::string tape, char blank_symbol,
+                      std::string tape, std::string blank_symbols,
                       int head_pos);
         //Load from file
         TuringMachine(std::ifstream stream);
