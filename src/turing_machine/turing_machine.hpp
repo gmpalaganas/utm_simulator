@@ -36,5 +36,7 @@ class TuringMachine{
         std::string cur_state();
         void set_cur_state(std::string s);
 
+        std::string alphabet();
+
         void str();
 };

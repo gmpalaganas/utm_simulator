@@ -62,3 +62,7 @@ void set_cur_state(string c){
     cur_state_index = index;
 
 }
+
+string alphabet(){
+    return input_alphabet + blank_symbols;
+}
