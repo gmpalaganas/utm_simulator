@@ -3,7 +3,7 @@
 using namespace std;
 using namespace TuringMachine;
 
-TuringMachine(vector<string> states, string input_alphabet, vector<vector<int>> state_transition_matrix,
+TuringMachine(vector<string> states, string input_alphabet, vector<vector<pair<int,int>>> state_transition_matrix,
               string start_state, vector<string> accept_states, string tape, string blank_symbols = "_" 
               int head_pos = 0) :
     states(states),
@@ -35,21 +35,32 @@ TuringMachine(ifstream stream){
 
     getline(stream, tape);
 
-    vector<vector<int>> transition_matrix_temp(input_alphabet.size() + blank_symbols.size(),
-                                               vector<int>(states.size(), 0));
+    vector<vector<pair<int,int>>> transition_matrix_temp(input_alphabet.size() + blank_symbols.size(),
+                                               vector<pair<int,int>>(states.size(), pair<int,int>(0,0)));
     while(getline(stream, holder)){
 
        vector tokens = utils::split_string(holder, ' ');
-
+       
        //Convert tokens to entries in state transition matrix
+       string alphabet = get_alphabet();
+
+       int state_index = find(states.begin(), states.end(), tokens[0]);
+       int symbol_index = find(alphabet.begin(), alphabet.end(), tokens[1]);
+
+       int new_state_index = find(states.begin(), states.end(), tokens[3]);
+       int new_symbol_index = find(alphabet.begin(), alphabet.end(), tokens[4]);
+       pair<int,int> transition(new_state_index,new_symbol_index);
+       
+       transition_matrix_temp[state_index][symbol_index] = transition;
 
     }
 
+    state_transition_matrix = transition_matrix_temp;
+
 }
 
-TuringMachine(string filename){
-    ifstream stream {filename};
-}
+TuringMachine(string filename):
+    TuringMachine(ifstream(filename)){}
 
 ~TuringMachine(){
 }
@@ -63,6 +74,6 @@ void set_cur_state(string c){
 
 }
 
-string alphabet(){
+string get_alphabet(){
     return input_alphabet + blank_symbols;
 }
