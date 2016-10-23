@@ -39,4 +39,4 @@ samples:
 
 clean:
 	@echo Cleaning up
-	@$(RM) build/*.o build/*/
+	@$(RM) build/*.o build/**/.o
