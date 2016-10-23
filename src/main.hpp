@@ -1,4 +1,5 @@
 #include <iostream>
-#include "turing_machine.hpp"
+#include <string>
 
-using namespace std;
+#include <turing_machine.hpp>
+#include <string_utils.hpp>
