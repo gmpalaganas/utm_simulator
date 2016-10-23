@@ -35,8 +35,8 @@ directories:
 
 samples:
 	@echo Copying sample files
-	@cp src/samples/ bin/samples
+	@cp src/samples/ bin/samples/ -r
 
 clean:
 	@echo Cleaning up
-	@$(RM) build/*.o build/**/.o
+	@$(RM) build/*.o build/**/*.o
