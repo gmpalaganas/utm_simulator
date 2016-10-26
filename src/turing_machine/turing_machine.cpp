@@ -51,13 +51,13 @@ TuringMachine::TuringMachine(ifstream stream){
        vector<string> tokens = utils::split_string(holder, ' ');
        
        //Convert tokens to entries in state transition matrix
-       string alphabet = get_input_alphabet();
+       string input_alphabet = get_input_alphabet();
 
        int state_index =  find(states.begin(), states.end(), tokens[0]) - states.begin();
-       int symbol_index = alphabet.find(tokens[1]);
+       int symbol_index = input_alphabet.find(tokens[1]);
 
        int new_state_index =  find(states.begin(), states.end(), tokens[3]) - states.begin();
-       int new_symbol_index = alphabet.find(tokens[4]); 
+       int new_symbol_index = input_alphabet.find(tokens[4]); 
        int head_mov = 0;
 
        switch(tokens[5][0]){
@@ -73,6 +73,8 @@ TuringMachine::TuringMachine(ifstream stream){
 
     state_transition_matrix = transition_matrix_temp;
 
+    head_pos = 0;
+
 }
 
 TuringMachine::TuringMachine(string filename):
@@ -85,7 +87,6 @@ string TuringMachine::get_cur_state(){ return states[cur_state_index]; }
 
 void TuringMachine::set_cur_state(string c){
 
-    //int index = utils::get_index(states,c);
     int index =  find(states.begin(), states.end(), c) - states.begin();
     cur_state_index = index;
 
@@ -135,11 +136,57 @@ string TuringMachine::str(){
     ss << "Start State: " << start_state << endl;
     ss << "Accept State: " << accept_state << endl;
     ss << "Reject State: " << reject_state << endl;
-    ss << "Current Tape: " << tape << endl;
+    ss << "Current Tape: " << get_tape_status();
 
     return ss.str(); 
 }
 
-void TuringMachine::exec(){
+string TuringMachine::get_tape_status(){
+
+    string holder = tape;
+
+    stringstream ss;
+    ss << '[' << holder[head_pos] << ']';
+
+    string head_pos_str = ss.str();
+
+    holder.replace(head_pos,1,head_pos_str);
+
+    
+    return holder;
+
+}
+
+int TuringMachine::exec(){
+    
+    while(get_cur_state() != accept_state && get_cur_state() != reject_state){
+        char cur_symbol = tape[head_pos];
+        transition trans = state_transition_matrix[cur_state_index][get_input_alphabet().find(cur_symbol)];
+
+        if(trans == transition(-1,-1,-1))
+            set_cur_state(reject_state);
+        else{
+            set_cur_state(states[get<0>(trans)]);
+            tape[head_pos] = get_input_alphabet()[get<1>(trans)]; 
+            mov_head(get<2>(trans));
+        }
+    }
+
+    if(get_cur_state() == accept_state)
+        return 1;
+
+    return 0;
+}
+
+void TuringMachine::mov_head(int mov){
+    
+    head_pos += mov;
+
+    if(head_pos < 0){
+        tape = blank_symbol + tape;
+        head_pos = 0;
+    }else if(head_pos == tape.size()){
+        tape += blank_symbol;
+    }
 
 }

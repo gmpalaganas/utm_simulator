@@ -50,6 +50,11 @@ class TuringMachine{
         std::string get_input_alphabet();
         
         std::string str();
+        std::string get_tape_status();
+        
+        int exec();
 
-        void exec();
+    private:
+
+        void mov_head(int mov);
 };
