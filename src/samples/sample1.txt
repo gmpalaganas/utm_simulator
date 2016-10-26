@@ -1,15 +1,16 @@
 01
 _
-Mov B B1 OK
+Mov B B1 ACCEPT REJECT
 Mov
-OK
+ACCEPT
+REJECT
 01100100
 Mov 0 = Mov 0 >
 Mov 1 = Mov 1 >
 Mov _ = B _ <
 B 0 = B 0 <
 B 1 = B1 1 <
-B _ = OK _ >
+B _ = ACCEPT _ >
 B1 0 = B1 1 <
 B1 1 = B1 0 <
-B1 _ = OK _ >
+B1 _ = ACCEPT _ >

@@ -10,7 +10,7 @@ OBJS = build/main.o \
 	   build/utils/string_utils.o \
 	   build/turing_machine/turing_machine.o 
 
-all: directories bin/tm_sim samples clean 
+all: directories bin/tm_sim samples
 	@echo Done
 
 bin/tm_sim: $(OBJS)
@@ -35,8 +35,9 @@ directories:
 
 samples:
 	@echo Copying sample files
-	@cp src/samples/ bin/samples/ -r
+	@cp src/samples/ bin/ -r
 
 clean:
 	@echo Cleaning up
 	@$(RM) build/*.o build/**/*.o
+	@$(RM) bin/* bin/**/*
