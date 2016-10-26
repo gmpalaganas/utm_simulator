@@ -2,8 +2,14 @@
 
 using namespace std;
 
-int main(){
-    TuringMachine tm = TuringMachine("samples/sample1.txt");     
+int main(int argc, char *argv[]){
+    
+    if(argc != 2){
+        cout << "usage: " << argv[0] << " <filename>\n";
+        return 1;
+    }
+
+    TuringMachine tm = TuringMachine(argv[1]);     
 
     cout << tm.str() << endl;
 
