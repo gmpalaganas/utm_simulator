@@ -1,3 +1,10 @@
+/*
+ * A Universal Turing Machine Simulator based on
+ * the formal definition of a Turing Machine.
+ *
+ * See Chapter 3 of Introduction to the Theory of Computation 3rd Ed by Michael J. Sipser
+ */
+
 #include "main.hpp"
 
 using namespace std;
