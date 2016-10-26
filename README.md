@@ -4,8 +4,8 @@
 
 A Universal Turing Machine Simulator written in C++
 
-Inspired by [Challenge 208 The Universal Machine"](https://www.reddit.com/r/dailyprogrammer/comments/31aja8/20150403_challenge_208_hard_the_universal_machine/)
-from [/r/dailyprogrammer](www.reddit.com/r/dailyprogrammer)
+Inspired by [Challenge 208 The Universal Machine](https://www.reddit.com/r/dailyprogrammer/comments/31aja8/20150403_challenge_208_hard_the_universal_machine/)
+from [/r/dailyprogrammer](https://www.reddit.com/r/dailyprogrammer)
 
 Used the formal definition of a (Single Tape) Turing Machine from *Introduction to the Theory of Computation 3rd Ed p. 168* by Michael J. Sipser.
 
